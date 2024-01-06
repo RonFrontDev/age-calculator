@@ -82,9 +82,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 .age-calculator__divider hr {
-  /* position: relative; */
   width: 100%;
   border: 1px solid var(--Light-grey);
 }
@@ -139,7 +139,8 @@ body {
     justify-content: flex-start;
   }
   .age-calculator__button {
-    position: fixed;
-    right: 29%;
+    /* position: fixed; */
+    /* right: 29%; */
+    right: -10%;
   }
 }
