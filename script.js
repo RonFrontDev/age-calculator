@@ -15,12 +15,31 @@ document.addEventListener('DOMContentLoaded', function () {
     // Calculate age
     const currentDate = new Date();
     const birthDate = new Date(year, month - 1, day);
-    const ageInMilliseconds = currentDate - birthDate;
-    const ageInYears = Math.floor(
-      ageInMilliseconds / (365.25 * 24 * 60 * 60 * 1000)
+
+    // Check if the birthdate is in the future
+    if (currentDate < birthDate) {
+      alert('Please enter a valid birthdate in the past.');
+      return;
+    }
+
+    // Calculate age components
+    let ageInYears = currentDate.getFullYear() - birthDate.getFullYear();
+    const currentMonth = currentDate.getMonth();
+    const birthMonth = birthDate.getMonth();
+
+    // Adjust age if birthday hasn't occurred this year yet
+    if (
+      currentMonth < birthMonth ||
+      (currentMonth === birthMonth && currentDate.getDate() < day)
+    ) {
+      ageInYears--;
+    }
+
+    const ageInMonths =
+      (currentDate.getMonth() - birthDate.getMonth() + 12) % 12;
+    const ageInDays = Math.floor(
+      (currentDate - birthDate) / (24 * 60 * 60 * 1000)
     );
-    const ageInMonths = Math.floor(ageInYears * 12);
-    const ageInDays = Math.floor(ageInMilliseconds / (24 * 60 * 60 * 1000));
 
     // Update result in the HTML
     document.querySelector(
